@@ -1,4 +1,3 @@
-
 const Page = require('@justeat/f-wdio-utils/src/page.object');
 const { buildUrl } = require('@justeat/f-wdio-utils/src/storybook-extensions');
 
@@ -22,6 +21,8 @@ module.exports = class CookieBanner extends Page {
     load () {
         const pageUrl = buildUrl(this.componentType, this.componentName, this.path);
         this.open(pageUrl);
+        browser.deleteAllCookies();
+        browser.refresh();
         this.waitForComponent();
     }
 
