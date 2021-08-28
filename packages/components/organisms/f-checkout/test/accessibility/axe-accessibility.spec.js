@@ -4,16 +4,14 @@ const { getAccessibilityTestResults } = require('../../../../../../test/utils/ax
 
 const Checkout = require('../../test-utils/component-objects/f-checkout.component');
 
-let checkout;
+let checkout = new Checkout();
 
 describe('Accessibility tests', () => {
     it('a11y - should test f-checkout component (delivery) WCAG compliance', () => {
-        // Act
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', 'delivery')
-            .withQuery('&knob-Is User Logged In', true);
-
-        checkout.load();
+        checkout.load({
+            'Service Type': 'delivery',
+            'Is User Logged In': true,
+        });
         const axeResults = getAccessibilityTestResults('f-checkout-delivery');
 
         // Assert
@@ -21,12 +19,10 @@ describe('Accessibility tests', () => {
     });
 
     it('a11y - should test f-checkout component (collection) WCAG compliance', () => {
-        // Act
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', 'collection')
-            .withQuery('&knob-Is User Logged In', true);
-
-        checkout.load();
+        checkout.load({
+            'Service Type': 'collection',
+            'Is User Logged In': true,
+        });
         const axeResults = getAccessibilityTestResults('f-checkout-collection');
 
         // Assert
@@ -34,12 +30,10 @@ describe('Accessibility tests', () => {
     });
 
     it('a11y - should test f-checkout component (guest) WCAG compliance', () => {
-        // Act
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', 'delivery')
-            .withQuery('&knob-Is User Logged In', false);
-
-        checkout.load();
+        checkout.load({
+            'Service Type': 'delivery',
+            'Is User Logged In': false,
+        });
         const axeResults = getAccessibilityTestResults('f-checkout-guest');
 
         // Assert
@@ -47,12 +41,10 @@ describe('Accessibility tests', () => {
     });
 
     it('a11y - should test f-checkout component (error) WCAG compliance', () => {
-        // Act
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', 'Invalid URL')
-            .withQuery('&knob-Is User Logged In', false);
-
-        checkout.loadError();
+        checkout.loadError({
+            'Service Type': 'Invalid URL',
+            'Is User Logged In': false,
+        });
         const axeResults = getAccessibilityTestResults('f-checkout-error-page');
 
         // Assert
@@ -71,14 +63,12 @@ describe('Accessibility tests', () => {
         ['dinein', 'time-unavailable']
     ])
     .it('a11y - Authenticated - "%s" - should have a correct tab order in patch checkout error - "%s"', (serviceType, patchError) => {
-        // Arrange
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', serviceType)
-            .withQuery('&knob-Is User Logged In', true)
-            .withQuery('&knob-Patch Checkout Errors', patchError);
-
         // Act
-        checkout.load();
+        checkout.load({
+            'Service Type': serviceType,
+            'Is User Logged In': true,
+            'Patch Checkout Errors': patchError,
+        });
         checkout.goToPayment();
 
         // Assert
@@ -91,14 +81,12 @@ describe('Accessibility tests', () => {
         ['delivery']
     ])
     .it('a11y - Authenticated - "%s" - should have a correct tab order in duplicate order error', serviceType => {
-        // Arrange
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', serviceType)
-            .withQuery('&knob-Is User Logged In', true)
-            .withQuery('&knob-Place Order Errors', 'duplicate');
-
         // Act
-        checkout.load();
+        checkout.load({
+            'Service Type': serviceType,
+            'Is User Logged In': true,
+            'Place Order Errors': 'duplicate',
+        });
         checkout.goToPayment();
 
         // Assert
@@ -112,13 +100,11 @@ describe('Accessibility tests', () => {
         ['collection', 'time-unavailable']
     ])
     .it('a11y - Guest - "%s" - should have a correct tab order in patch checkout error - "%s"', (serviceType, patchError) => {
-        // Arrange
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', serviceType)
-            .withQuery('&knob-Is User Logged In', false)
-            .withQuery('&knob-Patch Checkout Errors', patchError);
-
-        checkout.load();
+        checkout.load({
+            'Service Type': serviceType,
+            'Is User Logged In': false,
+            'Patch Checkout Errors': patchError,
+        });
 
         // Act
         checkout.setFieldValue('firstName', 'Jerry');
@@ -141,13 +127,11 @@ describe('Accessibility tests', () => {
         ['delivery', 'time-unavailable']
     ])
     .it('a11y - Guest - "%s" - should have a correct tab order in patch checkout error - "%s"', (serviceType, patchError) => {
-        // Arrange
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', serviceType)
-            .withQuery('&knob-Is User Logged In', false)
-            .withQuery('&knob-Patch Checkout Errors', patchError);
-
-        checkout.load();
+        checkout.load({
+            'Service Type': serviceType,
+            'Is User Logged In': false,
+            'Patch Checkout Errors': patchError,
+        });
 
         // Act
         checkout.setFieldValue('firstName', 'Jerry');
@@ -173,13 +157,11 @@ describe('Accessibility tests', () => {
         ['dinein', 'time-unavailable']
     ])
     .it('a11y - Guest - "%s" - should have a correct tab order in patch checkout error - "%s"', (serviceType, patchError) => {
-        // Arrange
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', serviceType)
-            .withQuery('&knob-Is User Logged In', false)
-            .withQuery('&knob-Patch Checkout Errors', patchError);
-
-        checkout.load();
+        checkout.load({
+            'Service Type': serviceType,
+            'Is User Logged In': false,
+            'Patch Checkout Errors': patchError,
+        });
 
         // Act
         checkout.setFieldValue('firstName', 'Jerry');
@@ -198,13 +180,11 @@ describe('Accessibility tests', () => {
     });
 
     it('a11y - Guest - Collection - should have a correct tab order in duplicate order error', () => {
-        // Arrange
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', 'collection')
-            .withQuery('&knob-Is User Logged In', false)
-            .withQuery('&knob-Place Order Errors', 'duplicate');
-
-        checkout.load();
+        checkout.load({
+            'Service Type': 'collection',
+            'Is User Logged In': false,
+            'Place Order Errors': 'duplicate',
+        });
 
         // Act
         checkout.setFieldValue('firstName', 'Jerry');
@@ -222,13 +202,11 @@ describe('Accessibility tests', () => {
     });
 
     it('a11y - Guest - Delivery - should have a correct tab order in duplicate order error', () => {
-        // Arrange
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', 'delivery')
-            .withQuery('&knob-Is User Logged In', false)
-            .withQuery('&knob-Place Order Errors', 'duplicate');
-
-        checkout.load();
+        checkout.load({
+            'Service Type': 'delivery',
+            'Is User Logged In': false,
+            'Place Order Errors': 'duplicate',
+        });
 
         // Act
         checkout.setFieldValue('firstName', 'Jerry');
@@ -249,13 +227,11 @@ describe('Accessibility tests', () => {
     });
 
     it('a11y - Guest - Dine In - should have a correct tab order in duplicate order error', () => {
-        // Arrange
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', 'dinein')
-            .withQuery('&knob-Is User Logged In', false)
-            .withQuery('&knob-Place Order Errors', 'duplicate');
-
-        checkout.load();
+        checkout.load({
+            'Service Type': 'dinein',
+            'Is User Logged In': false,
+            'Place Order Errors': 'duplicate',
+        });
 
         // Act
         checkout.setFieldValue('firstName', 'Jerry');

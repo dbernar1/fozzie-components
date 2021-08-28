@@ -1,16 +1,15 @@
 const Checkout = require('../../test-utils/component-objects/f-checkout.component');
 
 
-let checkout;
+let checkout = new Checkout();
 
 describe('f-checkout "delivery" component tests', () => {
     beforeEach(() => {
-        checkout = new Checkout();
-        checkout.withQuery('&knob-Service Type', 'delivery')
-            .withQuery('&knob-Is User Logged In', true)
-            .withQuery('&knob-Is ASAP available', true);
-
-        checkout.load();
+        checkout.load({
+            'Service Type': 'delivery',
+            'Is User Logged In': true,
+            'Is ASAP available': true,
+        });
     });
 
     it('should enable a user to submit a postcode with correct characters', () => {
