@@ -1,4 +1,3 @@
-const { buildUrl } = require('@justeat/f-wdio-utils/src/storybook-extensions');
 const Checkout = require('../../test-utils/component-objects/f-checkout.component');
 
 
@@ -11,10 +10,7 @@ describe('f-checkout "delivery" component tests', () => {
             .withQuery('&knob-Is User Logged In', true)
             .withQuery('&knob-Is ASAP available', true);
 
-        const pageUrl = buildUrl(checkout.componentType, checkout.componentName, checkout.path);
-
-        checkout.open(pageUrl);
-        checkout.waitForComponent();
+        checkout.load();
     });
 
     it('should enable a user to submit a postcode with correct characters', () => {
