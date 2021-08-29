@@ -7,6 +7,8 @@ const { getConfigurationSettings } = require('./test/utils/configuration-helper'
 const configurationSettings = getConfigurationSettings();
 const percySnapshot = require('@percy/webdriverio');
 
+const { getAccessibilityTestResults } = require('./test/utils/axe-helper');
+
 exports.config = {
 
     //
@@ -204,6 +206,17 @@ exports.config = {
             browser.call(async () => await percySnapshot(`${screenshotName} - ${featureType}`, {
                 widths: viewportWidths
             }));
+        });
+
+        expect.extend({
+            toHaveNoA11yViolations(loadPage, componentName) {
+                loadPage();
+                const axeResults = getAccessibilityTestResults(componentName);
+                return {
+                    pass: axeResults.violations.length === 0,
+                    message: () => `${componentName} has accessibility violations.`,
+                }
+            }
         });
     },
     /**

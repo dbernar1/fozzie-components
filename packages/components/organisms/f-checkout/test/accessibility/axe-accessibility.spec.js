@@ -1,54 +1,36 @@
 import forEach from 'mocha-each';
 
-const { getAccessibilityTestResults } = require('../../../../../../test/utils/axe-helper');
-
 const Checkout = require('../../test-utils/component-objects/f-checkout.component');
 
 let checkout = new Checkout();
 
 describe('Accessibility tests', () => {
     it('a11y - should test f-checkout component (delivery) WCAG compliance', () => {
-        checkout.load({
+        expect(() => checkout.load({
             'Service Type': 'delivery',
             'Is User Logged In': true,
-        });
-        const axeResults = getAccessibilityTestResults('f-checkout-delivery');
-
-        // Assert
-        expect(axeResults.violations.length).toBe(0);
+        })).toHaveNoA11yViolations('f-checkout-delivery');
     });
 
     it('a11y - should test f-checkout component (collection) WCAG compliance', () => {
-        checkout.load({
+        expect(() => checkout.load({
             'Service Type': 'collection',
             'Is User Logged In': true,
-        });
-        const axeResults = getAccessibilityTestResults('f-checkout-collection');
-
-        // Assert
-        expect(axeResults.violations.length).toBe(0);
+        })).toHaveNoA11yViolations('f-checkout-collection');
     });
 
     it('a11y - should test f-checkout component (guest) WCAG compliance', () => {
-        checkout.load({
+        expect(() => checkout.load({
             'Service Type': 'delivery',
             'Is User Logged In': false,
-        });
-        const axeResults = getAccessibilityTestResults('f-checkout-guest');
-
-        // Assert
-        expect(axeResults.violations.length).toBe(0);
+        })).toHaveNoA11yViolations('f-checkout-guest');
     });
 
     it('a11y - should test f-checkout component (error) WCAG compliance', () => {
-        checkout.loadError({
+        expect(() => checkout.loadError({
             'Service Type': 'Invalid URL',
             'Is User Logged In': false,
-        });
-        const axeResults = getAccessibilityTestResults('f-checkout-error-page');
-
-        // Assert
-        expect(axeResults.violations.length).toBe(0);
+        })).toHaveNoA11yViolations('f-checkout-error-page');
     });
 
     forEach([
