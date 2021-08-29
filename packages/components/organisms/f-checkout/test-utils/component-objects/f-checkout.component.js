@@ -127,10 +127,6 @@ module.exports = class Checkout extends Page {
         super.load(this.errorPageComponent, queries);
     }
 
-    open (url) {
-        super.open(url);
-    }
-
     waitForComponent (component=this.component) {
         super.waitForComponent(component);
     }

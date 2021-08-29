@@ -9,10 +9,6 @@ module.exports = class Buttons extends Page {
 
     get linkComponent () { return $('[data-test-id="link-button-component"]'); }
 
-    open (url) {
-        super.open(url);
-    }
-
     load (queries) {
         super.load(this.actionComponent, queries);
     }

@@ -72,10 +72,6 @@ module.exports = class Footer extends Page {
         super.load(this.component, queries);
     }
 
-    open (url) {
-        super.open(url);
-    }
-
     waitForComponent () {
         super.waitForComponent(this.component);
     }

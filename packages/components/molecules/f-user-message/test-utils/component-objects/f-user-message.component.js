@@ -20,10 +20,6 @@ module.exports = class UserMessage extends Page {
         super.waitForComponent(this.component);
     }
 
-    open (url) {
-        super.open(url);
-    }
-
     isComponentDisplayed () {
         return this.component.isDisplayed();
     }
