@@ -17,10 +17,6 @@ module.exports = class Alert extends Page {
         return this.component.isDisplayed();
     }
 
-    waitForComponent () {
-        super.waitForComponent(this.component);
-    }
-
     clickExitButton () {
         this.exitButton.click();
     }

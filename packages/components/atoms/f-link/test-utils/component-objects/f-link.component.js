@@ -7,15 +7,11 @@ module.exports = class Link extends Page {
 
     load () {
         this.open();
-        this.waitForComponent();
+        this.waitForComponent(this.component);
     }
 
     open () {
         super.openComponent('atom', 'v-link-component');
-    }
-
-    waitForComponent () {
-        super.waitForComponent(this.component);
     }
 
     isComponentDisplayed () {

@@ -11,10 +11,6 @@ module.exports = class Card extends Page {
 
     get component () { return $('[data-test-id="card-component"]'); }
 
-    waitForComponent () {
-        super.waitForComponent(this.component);
-    }
-
     isComponentDisplayed () {
         return this.component.isDisplayed();
     }

@@ -9,10 +9,6 @@ module.exports = class <%= name.filename %> extends Page {
         super.openComponent('<%= storybook.componentCategory.toLowerCase().slice(0, -1) %>', '<%= name.class %>-component');
     }
 
-    waitForComponent () {
-        super.waitForComponent(this.component);
-    }
-
     isComponentDisplayed () {
         return this.component.isDisplayed();
     }

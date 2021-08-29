@@ -33,10 +33,6 @@ module.exports = class StatusBanner extends Page {
         super.load(this.component);
     }
 
-    waitForComponent () {
-        super.waitForComponent(this.component);
-    }
-
     isStatusBannerComponentDisplayed () {
         return this.component.isDisplayed();
     }

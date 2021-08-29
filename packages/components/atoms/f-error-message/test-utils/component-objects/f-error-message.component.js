@@ -11,10 +11,6 @@ module.exports = class ErrorMessage extends Page {
 
     get component () { return $('[data-test-id="error-message-component"]'); }
 
-    waitForComponent () {
-        super.waitForComponent(this.component);
-    }
-
     isComponentDisplayed () {
         return this.component.isDisplayed();
     }

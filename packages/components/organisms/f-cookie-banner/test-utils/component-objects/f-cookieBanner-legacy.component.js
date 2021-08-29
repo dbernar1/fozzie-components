@@ -19,11 +19,7 @@ module.exports = class CookieBanner extends Page {
         this.open(pageUrl);
         browser.deleteAllCookies();
         browser.refresh();
-        this.waitForComponent();
-    }
-
-    waitForComponent () {
-        this.component.waitForExist();
+        this.waitForComponent(this.component);
     }
 
     isCookieBannerComponentDisplayed () {

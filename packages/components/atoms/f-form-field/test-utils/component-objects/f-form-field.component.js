@@ -15,10 +15,6 @@ module.exports = class FormField extends Page {
         super.load(this.component);
     }
 
-    waitForComponent () {
-        super.waitForComponent(this.component);
-    }
-
     isComponentDisplayed () {
         return this.component.isDisplayed();
     }

@@ -131,10 +131,6 @@ module.exports = class Checkout extends Page {
         super.waitForComponent(component);
     }
 
-    waitForErrorPageComponent () {
-        super.waitForComponent(this.errorPageComponent);
-    }
-
     isCheckoutPageDisplayed () {
         return this.component.isDisplayed();
     }

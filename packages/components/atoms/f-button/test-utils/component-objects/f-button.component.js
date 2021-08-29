@@ -33,14 +33,6 @@ module.exports = class Buttons extends Page {
     //     browser.url(`/iframe.html?id=components-atoms-f-button--button-component${type}${url}${size}`)
     // }
 
-    waitForActionComponent () {
-        super.waitForComponent(this.actionComponent);
-    }
-
-    waitForLinkComponent () {
-        super.waitForComponent(this.linkComponent);
-    }
-
     isActionComponentDisplayed () {
         return this.actionComponent.isDisplayed();
     }
